@@ -14,32 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with the snarkOS library. If not, see <https://www.gnu.org/licenses/>.
 
-#![forbid(unsafe_code)]
-#![allow(clippy::module_inception)]
-#![allow(clippy::suspicious_else_formatting)]
-#![allow(clippy::type_complexity)]
+pub mod message;
+pub use message::*;
 
-#[macro_use]
-extern crate thiserror;
-#[macro_use]
-extern crate tracing;
+pub mod redis_publisher;
+pub use redis_publisher::*;
 
-pub(crate) mod display;
-pub(crate) use display::*;
+pub mod redis_subscriber;
+pub use redis_subscriber::*;
 
-pub mod environment;
-pub use environment::*;
+pub mod message_handler;
+pub use message_handler::*;
 
-pub mod helpers;
-
-pub mod network;
-pub use network::*;
-
-pub mod node;
-pub use node::*;
-
-pub mod pubsub_redis;
-pub use pubsub_redis::*;
-
-#[cfg(feature = "rpc")]
-pub(crate) mod rpc;
